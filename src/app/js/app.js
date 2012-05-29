@@ -181,15 +181,13 @@
       this.$searchbox.keypress(function(e) {
         var qdata, url;
         if (e.keyCode === 13) {
-          console.log(searchbox.val());
+          console.log("** " + searchbox.val());
           url = 'http://api.yeda.us/data/hasadna/budget-ninja/';
           qdata = {
             query: '{\"title\":\"' + searchbox.val() + '\"}',
             o: 'jsonp'
           };
           $.get(url, qdata, function(data) {
-            console.log("search results");
-            console.log(data);
             $.each(data, function(index, value) {
               var mus_data;
               mus_data = {
@@ -203,7 +201,6 @@
             data = {
               searchresults: data
             };
-            console.log($("#_searchresults"));
             return searchresults.html(Mustache.to_html($.mustacheTemplates.searchresults, data));
           }, "jsonp");
           e.preventDefault();
@@ -449,7 +446,7 @@
         h.appendChild(s);
       };
       /*
-      		tell everyone the item we've loaded
+      		tell everyone the item we''ve loaded
       */
       this.notifyItemLoaded = function(item) {
         $.each(that.listeners, function(i) {
@@ -611,7 +608,7 @@
       this.line = new Highcharts.Chart({
         chart: {
           renderTo: $container[0].id,
-          type: 'line'
+          type: 'column'
         },
         title: {
           text: 'תקציב המדינה'
